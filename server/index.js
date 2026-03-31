@@ -13,7 +13,7 @@ app.use(express.json());
 
 
 const FoodModel=require("./models/Food")
-mongoose.connect("mongodb+srv://root:root@cluster0.h9zmf8m.mongodb.net/Food?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://root:root@cluster0.h9zmf8m.mongodb.net/?appName=Cluster0/Food")
 .then(()=>console.log('Connected'))
 .catch(err=>console.log(err))
 
