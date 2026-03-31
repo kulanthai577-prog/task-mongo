@@ -13,7 +13,7 @@ app.use(express.json());
 
 
 const FoodModel=require("./models/Food")
-mongoose.connect("mongodb+srv://root:root@cluster0.h9zmf8m.mongodb.net/Food")
+mongoose.connect("mongodb+srv://root:root@cluster0.h9zmf8m.mongodb.net/?appName=Cluster0/Food")
 .then(()=>console.log('Connected'))
 .catch(err=>console.log(err))
 
@@ -45,7 +45,9 @@ app.get("/read",async(req,res)=>{
     }
     catch(err)
     {
-        res.send("Error")
+         console.log(err);
+
+    res.status(500).send([]); 
     }
 })
 

@@ -8,7 +8,7 @@ function CrudPage()
 {
 
    const [foodName,setFoodName]=useState("");
-   const [description,setDecription]=useState([]);
+   const [description,setDecription]=useState("");
     const [foodList,setFoodList]=useState([]);
    const [newFoodName,setNewFoodName]=useState("");
 
@@ -18,7 +18,7 @@ function CrudPage()
 
     //insert 
     const addFoodData=()=>{
-        Axios.post("http://localhost:3001/insert",{foodName,description})
+        Axios.post("https://task-mongo-7itg.onrender.com/insert",{foodName,description})
         .then((response)=>{
             console.log(response)
             alert("added");
@@ -29,20 +29,32 @@ function CrudPage()
     }
 
      //getData
-    const fetchData=()=>{
-        Axios.get("http://localhost:3001/read").then((response)=>{
-            console.log(response.data)
-            setFoodList(response.data)
-        })
-    }
+    const fetchData = () => {
+  Axios.get("https://task-mongo-7itg.onrender.com/read")
+    .then((response) => {
+      console.log("API DATA 👉", response.data);
+
+      // ✅ MAIN FIX
+      if (Array.isArray(response.data)) {
+        setFoodList(response.data);
+      } else {
+        console.log("Not array ❌", response.data);
+        setFoodList([]); // fallback
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      setFoodList([]); // safety
+    });
+};
     //update 
     const updateFood=(id)=>{
-        Axios.put(`http://localhost:3001/update`,{id,newFoodName})
+        Axios.put(`https://task-mongo-7itg.onrender.com/update`,{id,newFoodName})
         .then(()=>fetchData())
     }
     //delete
     const deleteFood=(id)=>{
-        Axios.delete(`http://localhost:3001/delete/${id}`).then(()=>fetchData())
+        Axios.delete(`https://task-mongo-7itg.onrender.com/delete/${id}`).then(()=>fetchData())
     }
 
 
