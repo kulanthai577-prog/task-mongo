@@ -13,7 +13,11 @@ app.use(express.json());
 
 
 const FoodModel=require("./models/Food")
+<<<<<<< HEAD
 mongoose.connect("mongodb+srv://root:root@cluster0.h9zmf8m.mongodb.net/?appName=Cluster0/Food")
+=======
+mongoose.connect("ongodb+srv://root:root@cluster0.h9zmf8m.mongodb.net/?appName=Cluster0/Food")
+>>>>>>> 9a91d3351637ad91b4e1f6072794869b436adcac
 .then(()=>console.log('Connected'))
 .catch(err=>console.log(err))
 
